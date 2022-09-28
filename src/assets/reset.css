@@ -1,0 +1,77 @@
+@charset "utf-8";
+html,body,ol,ul,li,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0;}
+body{
+	background-color: #f5f6f7;
+	font-size:16px;
+	font-family: "Microsoft YaHei", "宋体",Arial, "\5B8B\4F53", Helvetica, sans-serif;
+}
+ul,ol,li{list-style:none;font-size:14px;}
+li:hover{
+	background-color: #f5f6f7;
+}
+h1,h2,h3,h4,h5,h6{
+	font-size:16px;
+	font-weight:normal;
+}
+b,strong{font-weight:normal;}
+i,em{font-style:normal;}
+a,u{color:#000;text-decoration:none;display:block}
+img{
+	display:block;/*取消下边3px间距,同时img单独占据一行*/
+	border:0;
+}
+input,fieldset{
+	border:0;
+	outline:none;/*取消点击后出现的外边框*/
+}
+
+.fl{float:left;}
+.fr{float:right;}
+
+.pos-r{position:relative;}
+.pos-a{position:absolute;}
+.pos-f{position:fixed;}
+
+.fs12{font-size:12px;}
+.fs13{font-size:13px;}
+.fs14{font-size:14px;}
+.fs15{font-size:15px;}
+.fs16{font-size:16px;}
+.fs17{font-size:17px;}
+.fs18{font-size:18px;}
+.fs19{font-size:19px;}
+.fs20{font-size:20px;}
+.fs21{font-size:21px;}
+.fs22{font-size:22px;}
+.fs23{font-size:23px;}
+
+.clearFixed:after{
+	content:".";
+	display:block;
+	clear:both;
+	overflow:hidden;
+	width:0;
+	height:0;
+	visibility:hidden;
+}
+
+.border{
+    border:1px solid #d8d8d8;
+    border-radius: 6px;
+}
+
+main .color:hover{
+	text-decoration:underline;
+	color:#f5970a;
+}
+aside .color:hover{
+	text-decoration:underline;
+	color:#f5970a;
+}
+.ml20{
+	margin-left:20px;
+}
+
+
+
+
