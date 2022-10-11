@@ -6,9 +6,7 @@ body{
 	font-family: "Microsoft YaHei", "宋体",Arial, "\5B8B\4F53", Helvetica, sans-serif;
 }
 ul,ol,li{list-style:none;font-size:14px;}
-li:hover{
-	background-color: #f5f6f7;
-}
+
 h1,h2,h3,h4,h5,h6{
 	font-size:16px;
 	font-weight:normal;

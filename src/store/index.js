@@ -5,7 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    showLogin: false
+    // 登录注册页面
+    showLogin: false,
+    // 登录注册文字
+    loginTxt: true
   },
   getters: {
   },

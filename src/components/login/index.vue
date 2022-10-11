@@ -23,6 +23,7 @@
                   type="text"
                   placeholder="用户名/手机号/邮箱"
                   class="login-user"
+                  v-model="loginPhone"
                 /><span class="err-usr">请输入用户名</span>
               </li>
               <li class="password">
@@ -30,6 +31,7 @@
                   type="password"
                   placeholder="密码"
                   class="login-psw"
+                  v-model="loginPsw"
                 /><span class="err-psw"></span>
               </li>
               <li class="identify">
@@ -47,7 +49,7 @@
               </div>
               <a href="">忘记密码</a>
             </div>
-            <input type="submit" value="登 录" class="login-buttom" />
+            <div class="login_buttom" @click="goLogin">登 录</div>
             <div class="otherways">
               <a href="" class="weixin"
                 ><i class="iconfont icon-weixin3 w-p"></i> 微信</a
@@ -207,6 +209,10 @@ export default {
       // 登录的两种方式切换,loginWay1为账号密码登录，loginWay2为扫码登录
       loginWay1: true,
       loginWay2: false,
+      // 登录账号
+      loginPhone: '',
+      // 登录密码
+      loginPsw: '',
       // 注册和登录的切换
       registShow: false,
       // 密码是否可见
@@ -316,6 +322,27 @@ export default {
       if (this.phoneFlag && this.usrFlag && this.pswFlag && this.isChecked) {
         this.$refs.register_buttom.style.backgroundColor = '#8c222c'
       }
+      this.$api.goRegister({
+        phone: this.regPhone,
+        name: this.regUser,
+        password: this.regPsw
+      }).then(req => {
+        this.$store.state.showLogin = false
+        this.$store.state.loginTxt = false
+      })
+    },
+    // 用户进行登录
+    goLogin() {
+      this.$api.goLogin({
+        phoneNum: this.loginPhone,
+        password: this.loginPsw
+      }).then((req) => {
+        console.log(req)
+        localStorage.setItem('userInfo', req)
+        localStorage.setItem('userToken', req.token)
+        this.$store.state.showLogin = false
+        this.$store.state.loginTxt = false
+      })
     }
   }
 }
@@ -480,9 +507,11 @@ export default {
             }
           }
 
-          .login-buttom {
+          .login_buttom {
             width: 350px;
             height: 40px;
+            line-height: 40px;
+            text-align: center;
             font-size: 16px;
             color: #fff;
             background-color: #8c222c;
