@@ -15,13 +15,15 @@
       <div class="search"></div>
       <ul class="rightUl">
         <li>
-          <a @click="show" v-show="loginTxt">登录/注册</a>
+          <a @click="show" v-if="!loginTxt">登录/注册</a>
           <img
-            v-show="!loginTxt"
+            v-else
             class="avatar"
             src="../../static/login/avatar.png"
+            @mouseover="showMore"
+            @mouseout="hideMore"
           />
-          <div class="userInfo">
+          <div class="userInfo" ref="userInfo">
             <img src="../../static/login/avatar.png" alt="" class="userImg" />
             <div class="userName">斟秋</div>
             <div class="fans">
@@ -39,11 +41,7 @@
               </div>
             </div>
             <el-col :span="12" class="infoMore">
-              <el-menu
-                class="el-menu-vertical-demo"
-                @open="handleOpen"
-                @close="handleClose"
-              >
+              <el-menu class="el-menu-vertical-demo">
                 <el-menu-item index="1">
                   <i class="el-icon-location"></i>
                   <span slot="title">个人中心</span>
@@ -83,7 +81,13 @@
       </ul>
     </header>
     <!-- 备案信息 -->
-    <footer>湘ICP备2022019370号-1</footer>
+    <footer>
+      <a href="https://beian.miit.gov.cn" target="_new" rel="noopener">湘ICP备2022019370号-1</a> &nbsp;
+      <img src="../../static/beian/beian.png" alt="" class="beian" />
+      <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43011102002253" target="_new"
+        >公安备案号43011102002253</a
+      >
+    </footer>
   </div>
 </template>
 <script>
@@ -100,11 +104,17 @@ export default {
     Login
   },
   computed: {
-    ...mapState(['showLogin'])
+    ...mapState(['showLogin', 'loginTxt'])
   },
   methods: {
     show() {
       this.$store.commit('SHOW')
+    },
+    showMore() {
+      this.$refs.userInfo.style.display = 'block'
+    },
+    hideMore() {
+      this.$refs.userInfo.style.display = 'none'
     }
   }
 }
@@ -139,6 +149,7 @@ export default {
         cursor: pointer;
       }
       .userInfo {
+        display: none;
         position: absolute;
         top: 52px;
         left: -100px;
@@ -202,11 +213,6 @@ export default {
       }
     }
   }
-  a {
-    height: 48px;
-    padding: 0 10px;
-    cursor: pointer;
-  }
   header {
     position: relative;
     display: flex;
@@ -215,6 +221,11 @@ export default {
     line-height: 48px;
     background-color: #fff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    a {
+      height: 48px;
+      padding: 0 10px;
+      cursor: pointer;
+    }
     img {
       display: inline-block;
     }
@@ -241,14 +252,22 @@ export default {
     }
   }
   footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     bottom: 0;
-    width: 100vw;
+    width: max-content;
+    min-width: 100%;
     height: 36px;
-    line-height: 36px;
-    color: 2c3e50;
+    // line-height: 36px;
+    color: #2c3e50;
     text-align: center;
     background-color: #fff;
+    .beian {
+      width: 16px;
+      height: 16px;
+    }
   }
 }
 </style>
